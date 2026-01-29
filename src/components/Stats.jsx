@@ -54,23 +54,25 @@ const Stats = () => {
 const styles = {
     container: {
         display: "flex", // C'est ça qui aligne horizontalement
+        flexWrap: "wrap",
         flexDirection: "row", // Force la ligne
-        justifyContent: "flex-start", // Aligne au début (gauche)
-        gap: "24px", // Espace entre les cartes
+        justifyContent: "center", // Aligne au début (gauche)
+        gap: "20px",
         width: "100%",
+        marginBottom: "40px",
         padding: "10px 0",
-        flexWrap: "wrap", // Permet de passer à la ligne sur mobile
     },
     card: {
         backgroundColor: "#ffffff",
-        borderRadius: "14px",
-        padding: "18px 24px",
+        borderRadius: "16px",
+        padding: "24px",
         display: "flex",
         alignItems: "center",
         minWidth: "220px", // Largeur minimum pour chaque carte
-        flex: "1", // Permet aux cartes de prendre la même place
         maxWidth: "300px", // Évite qu'elles deviennent trop larges sur grand écran
         boxShadow: "0 8px 20px rgba(0,0,0,0.2)",
+        flex: "1 1 300px", // "1" pour grandir, "300px" comme base de largeur
+        minHeight: "100px",
     },
     iconBox: {
         fontSize: "2.2rem",
