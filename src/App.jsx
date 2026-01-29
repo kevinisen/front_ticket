@@ -31,7 +31,10 @@ function App() {
                     >
                         + Nouveau Ticket
                     </button>
-                    <TicketList key={`list-${refreshKey}`} />
+                    <TicketList
+                        key={`list-${refreshKey}`}
+                        onRefresh={handleTicketAdded}
+                    />
                 </div>
 
                 <AddTicketModal

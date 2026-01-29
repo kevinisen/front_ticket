@@ -9,16 +9,31 @@ const AddTicketModal = ({ isOpen, onClose, onTicketAdded }) => {
         tags: "",
     })
 
+    // Fonction pour fermer si on clique sur le fond sombre uniquement
+    const handleOverlayClick = (e) => {
+        // e.target est l'élément cliqué
+        // e.currentTarget est l'élément qui possède l'événement (l'overlay)
+        if (e.target === e.currentTarget) {
+            onClose()
+        }
+    }
+
+    if (!isOpen) return null
+
     const handleSubmit = async (e) => {
         e.preventDefault()
 
         // On transforme la chaîne de tags "bug, ui" en tableau ["bug", "ui"]
         const formattedData = {
             ...formData,
-            tags: formData.tags
-                .trim() // Enlève les espaces au début et à la fin
-                .split(/[\s,]+/) // Coupe sur n'importe quelle suite de virgules ou d'espaces
-                .filter((tag) => tag !== ""), // Sécurité supplémentaire
+            tags: [
+                ...new Set( // Le "Set" filtre les doublons
+                    formData.tags
+                        .trim()
+                        .split(/[\s,]+/)
+                        .filter((tag) => tag !== ""),
+                ),
+            ],
         }
 
         console.log("formattedData", formattedData)
@@ -49,7 +64,10 @@ const AddTicketModal = ({ isOpen, onClose, onTicketAdded }) => {
     if (!isOpen) return null
 
     return (
-        <div style={styles.overlay}>
+        <div
+            style={styles.overlay}
+            onClick={handleOverlayClick}
+        >
             <div style={styles.modal}>
                 <h2 style={{ marginTop: 0 }}>Nouveau Ticket</h2>
                 <form

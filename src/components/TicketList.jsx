@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react"
 import TicketCard from "./TicketCard"
 
-const TicketList = () => {
+const TicketList = ({ onRefresh }) => {
     const [tickets, setTickets] = useState([])
     const [loading, setLoading] = useState(true)
     // Préparation pour les filtres
@@ -41,6 +41,7 @@ const TicketList = () => {
                     <TicketCard
                         key={ticket.id}
                         ticket={ticket}
+                        onRefresh={onRefresh} // 2. On la donne à la card
                     />
                 ))}
             </div>
